@@ -16,8 +16,18 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: [
-      ".loclx.io", // specific hostname from a service
-    ],
+    allowedHosts: [".loclx.io"],
+    proxy: {
+      "/api": {
+        target: "http://localhost:8000",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "api"),
+      },
+      "/socket.io": {
+        target: "ws://localhost:9000",
+        ws: true,
+        rewriteWsOrigin: true,
+      },
+    },
   },
 });
