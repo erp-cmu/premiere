@@ -1,4 +1,6 @@
 import path from "path"; // 1. Import path
+
+import { config } from "process";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react-swc";
 import { defineConfig } from "vite";
@@ -16,17 +18,33 @@ export default defineConfig({
     },
   },
   server: {
-    allowedHosts: [".loclx.io"],
+    // allowedHosts: [".loclx.io"],
     proxy: {
       "/api": {
         target: "http://localhost:8000",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, "api"),
+        configure: (proxy, _options) => {
+          proxy.on("proxyReq", (proxyReq, req, _res) => {
+            console.log("proxying request to:", proxyReq.path);
+          });
+          proxy.on("error", (err, _req, _res) => {
+            console.log("proxy error", err);
+          });
+        },
       },
       "/socket.io": {
         target: "ws://localhost:9000",
         ws: true,
         rewriteWsOrigin: true,
+        configure: (proxy, _options) => {
+          proxy.on("proxyReq", (proxyReq, req, _res) => {
+            console.log("proxying request to:", proxyReq.path);
+          });
+          proxy.on("error", (err, _req, _res) => {
+            console.log("proxy error", err);
+          });
+        },
       },
     },
   },
