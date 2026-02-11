@@ -1,8 +1,9 @@
 import useAuth from "@/hooks/auth";
-import { NavLink, Outlet } from "react-router";
+import { NavLink, Outlet, useNavigate } from "react-router";
 
 function Layout() {
   const { currentUser, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col min-h-screen bg-base-100">
@@ -19,7 +20,10 @@ function Layout() {
             {currentUser && <NavLinkWrapper to="/stock">Stock</NavLinkWrapper>}
             {currentUser && (
               <button
-                onClick={logout}
+                onClick={async () => {
+                  await logout();
+                  navigate("/home");
+                }}
                 className="btn btn-sm btn-outline hover:btn-error"
               >
                 Logout
