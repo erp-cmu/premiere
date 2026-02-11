@@ -78,7 +78,7 @@ const Avatar = ({
   return (
     <div className="avatar online">
       <div className="w-10 rounded-full">
-        <img src="https://i.pravatar.cc/150?img=32" alt="User Avatar" />
+        <img src="https://i.pravatar.cc/150" alt="User Avatar" />
       </div>
     </div>
   );

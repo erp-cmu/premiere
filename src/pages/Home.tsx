@@ -5,7 +5,7 @@ function Home() {
       <div className="hero min-h-[500px] bg-base-200 rounded-2xl overflow-hidden shadow-xl">
         <div className="hero-content flex-col lg:flex-row-reverse gap-8">
           <img
-            src="https://picsum.photos/seed/premiere-innova/600/400"
+            src="https://picsum.photos/600/400"
             className="max-w-sm rounded-lg shadow-2xl"
             alt="Hero"
           />
