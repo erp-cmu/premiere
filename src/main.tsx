@@ -5,9 +5,12 @@ import App from "./App.tsx";
 import "./styles/global.css";
 import { BrowserRouter } from "react-router";
 
+const erpnextUrl = import.meta.env.VITE_ERPNEXT_URL || "http://localhost:8000";
+const socketPort = import.meta.env.VITE_SOCKET_PORT;
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <FrappeProvider url="http://localhost:8000" socketPort="9000">
+    <FrappeProvider url={erpnextUrl} socketPort={socketPort}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
