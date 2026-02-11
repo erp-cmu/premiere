@@ -15,4 +15,9 @@ export default defineConfig({
       "@pages": path.resolve(__dirname, "./src/pages"),
     },
   },
+  server: {
+    allowedHosts: [
+      ".loclx.io", // specific hostname from a service
+    ],
+  },
 });
