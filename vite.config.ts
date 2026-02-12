@@ -34,7 +34,7 @@ export default defineConfig({
         },
       },
       "/socket.io": {
-        target: "ws://localhost:9000",
+        target: "http://localhost:9000",
         ws: true,
         rewriteWsOrigin: true,
         configure: (proxy, _options) => {
